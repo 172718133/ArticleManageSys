@@ -36,14 +36,23 @@ export const register = ({ username, password, repassword }) => {
 
 /**
  * 获取用户信息
- * @param {*} token token值
  * @returns Promise对象
  */
-export const getUserInfoAPI = (token) => {
+export const getUserInfoAPI = () => {
   return request({
     url: '/my/userinfo'
     // headers: {
     //   Authorization: token
     // }
+  })
+}
+
+/**
+ * 获取侧边栏数据
+ * @returns Promise对象
+ */
+export const getAsideListAPI = () => {
+  return request({
+    url: '/my/menus'
   })
 }
