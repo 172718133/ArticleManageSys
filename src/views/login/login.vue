@@ -51,7 +51,7 @@ export default {
       if (res.code !== 0) return this.$message.error(res.message)
       this.$store.commit('updateToken', res.token)
       this.$message.success(res.message)
-      this.$router.push('/main')
+      this.$router.push('/')
     }
   }
 }

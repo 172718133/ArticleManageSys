@@ -33,3 +33,17 @@ export const register = ({ username, password, repassword }) => {
     }
   })
 }
+
+/**
+ * 获取用户信息
+ * @param {*} token token值
+ * @returns Promise对象
+ */
+export const getUserInfoAPI = (token) => {
+  return request({
+    url: '/my/userinfo'
+    // headers: {
+    //   Authorization: token
+    // }
+  })
+}

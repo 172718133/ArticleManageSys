@@ -9,9 +9,9 @@
           <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" background-color="#3a4146" text-color="#fff" active-text-color="#fff">
             <el-submenu index="2">
               <template slot="title">
-                <img src="@/assets/images/avatar.jpg" alt="" v-if="!userInfo.avatar">
-                <img src="" alt="" v-else>
-                <span>个人中心</span>
+                <img src="@/assets/images/avatar.jpg" alt="" v-if="!$store.getters.user_pic">
+                <img :src="$store.getters.user_pic" alt="" v-else>
+                <span>你好！{{ $store.getters.nickname || $store.getters.username }}</span>
               </template>
               <el-menu-item index="2-1">更换头像</el-menu-item>
               <el-menu-item index="2-2">修改密码</el-menu-item>
@@ -68,7 +68,9 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
+        // 向vuex中传空值=>清空token和用户信息
         this.$store.commit('updateToken', '')
+        this.$store.commit('updateUserinfo', {})
         this.$message.success('退出登录成功！')
         this.$router.push('/login')
       }).catch(() => {
