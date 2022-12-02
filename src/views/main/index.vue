@@ -1,10 +1,10 @@
 <template>
-  <div class="login_container"></div>
+  <div class="main_container"></div>
 </template>
 
 <script>
 export default {
-  name: 'my-login'
+  name: 'my-main'
 }
 </script>
 

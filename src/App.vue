@@ -1,7 +1,5 @@
 <template>
-  <div class="app_container">
-    <h1>app组件</h1>
-  </div>
+    <router-view></router-view>
 </template>
 
 <script>
