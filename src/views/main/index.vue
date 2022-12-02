@@ -5,7 +5,7 @@
       <el-header>
         <!-- 左侧logo -->
         <div class="left">
-          <img src="@/assets/images/logo.png" alt="">
+          <img src="@/assets/images/logo.png" @click="$router.push('/')">
         </div>
         <!-- 右侧个人中心 -->
         <div class="right">
@@ -16,8 +16,8 @@
                 <img :src="$store.getters.user_pic" alt="" v-else>
                 <span>你好！{{ $store.getters.nickname || $store.getters.username }}</span>
               </template>
-              <el-menu-item index="2-1">更换头像</el-menu-item>
-              <el-menu-item index="2-2">修改密码</el-menu-item>
+              <el-menu-item index="2-1" @click="$router.push('/user-avatar')">更换头像</el-menu-item>
+              <el-menu-item index="2-2" @click="$router.push('/user-pwd')">修改密码</el-menu-item>
               <el-menu-item index="2-3" @click="logout">退出登录</el-menu-item>
             </el-submenu>
           </el-menu>
@@ -46,7 +46,10 @@
                       <i :class="item.icon"></i>
                       <span>{{item.title}}</span>
                     </template>
-                    <el-menu-item :index="subItem.indexPath" v-for="subItem in item.children" :key="subItem.indexPath">{{subItem.title}}</el-menu-item>
+                    <el-menu-item :index="subItem.indexPath" v-for="subItem in item.children" :key="subItem.indexPath">
+                      <i :class="subItem.icon"></i>
+                      <span>{{subItem.title}}</span>
+                    </el-menu-item>
                   </el-submenu>
                 </template>
               </el-menu>
@@ -54,7 +57,10 @@
           </el-row>
         </el-aside>
         <el-container>
-          <el-main>Main</el-main>
+          <el-main>
+            <!-- 二级路由挂载点 -->
+            <router-view></router-view>
+          </el-main>
           <el-footer>Copyright © Intretech Inc. All Rights Reserved.</el-footer>
         </el-container>
       </el-container>
@@ -117,6 +123,7 @@ export default {
   line-height: 50px;
 }
 .el-header {
+  user-select: none;
   background-color: #3a4146;
   display: flex;
   justify-content: space-between;
@@ -145,6 +152,7 @@ export default {
   }
 }
 .el-aside {
+  user-select: none;
   background-color: #545c64;
   color: #333;
   text-align: left;
@@ -154,23 +162,7 @@ export default {
   }
 }
 
-.el-main {
-  // background-color: #E9EEF3;
-  color: #333;
-  text-align: center;
-  line-height: 160px;
-}
-
 body > .el-container {
   margin-bottom: 40px;
-}
-
-.el-container:nth-child(5) .el-aside,
-.el-container:nth-child(6) .el-aside {
-  line-height: 260px;
-}
-
-.el-container:nth-child(7) .el-aside {
-  line-height: 320px;
 }
 </style>
