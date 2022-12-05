@@ -157,9 +157,9 @@ export default {
   color: #333;
   text-align: left;
   // line-height: 200px;
-  .tac, .el-menu {
-    width: 200px;
-  }
+}
+.el-submenu, .el-menu-item {
+  width: 200px;
 }
 
 body > .el-container {
