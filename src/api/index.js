@@ -90,3 +90,18 @@ export const updateUserPwdAPI = ({ old_pwd, new_pwd, re_pwd }) => {
     }
   })
 }
+
+/**
+ * 更新用户头像
+ * @param {*} avatar base64格式地址
+ * @returns Promise对象
+ */
+export const updateUserAvatarAPI = (avatar) => {
+  return request({
+    url: '/my/update/avatar',
+    method: 'PATCH',
+    data: {
+      avatar
+    }
+  })
+}
