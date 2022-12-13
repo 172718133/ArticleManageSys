@@ -16,7 +16,7 @@
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="confirm">确认修改</el-button>
-          <el-button @click="confirm">重置</el-button>
+          <el-button @click="reset">重置</el-button>
         </el-form-item>
       </el-form>
     </el-card>
@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import { updateUserInfoAPI } from '@/api'
 export default {
   name: 'art-info',
   data () {
@@ -46,8 +47,17 @@ export default {
     }
   },
   methods: {
-    confirm () {},
-    reset () {}
+    async confirm () {
+      this.infoFrom.id = this.$store.state.userInfo.id
+      const { data: res } = await updateUserInfoAPI(this.infoFrom)
+      if (res.code !== 0) return this.$message.error(res.message)
+      this.$refs.infoform.resetFields()
+      this.$message.success(res.message)
+      this.$store.dispatch('getUserInfoAction')
+    },
+    reset () {
+      this.$refs.infoform.resetFields()
+    }
   }
 }
 </script>

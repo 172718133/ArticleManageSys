@@ -56,3 +56,20 @@ export const getAsideListAPI = () => {
     url: '/my/menus'
   })
 }
+
+/**
+ * 更新用户信息
+ * @param {*} param0 用户id、用户昵称、用户邮箱
+ * @returns Promise对象
+ */
+export const updateUserInfoAPI = ({ id, nickname, email }) => {
+  return request({
+    url: '/my/userinfo',
+    method: 'PUT',
+    data: {
+      id,
+      nickname,
+      email
+    }
+  })
+}
