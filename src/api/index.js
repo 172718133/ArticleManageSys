@@ -73,3 +73,20 @@ export const updateUserInfoAPI = ({ id, nickname, email }) => {
     }
   })
 }
+
+/**
+ * 更新用户密码
+ * @param {*} param0 旧密码、新密码、确认密码
+ * @returns Promise对象
+ */
+export const updateUserPwdAPI = ({ old_pwd, new_pwd, re_pwd }) => {
+  return request({
+    url: '/my/updatepwd',
+    method: 'PATCH',
+    data: {
+      old_pwd,
+      new_pwd,
+      re_pwd
+    }
+  })
+}
