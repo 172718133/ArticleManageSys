@@ -163,6 +163,7 @@ export default {
 }
 .el-main{
   overflow-y: scroll;
+  height: 0;
 }
 
 body > .el-container {

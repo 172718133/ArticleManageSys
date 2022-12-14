@@ -115,3 +115,51 @@ export const getArtCateAPI = () => {
     url: '/my/cate/list'
   })
 }
+
+/**
+ * 添加文章分类
+ * @param {*} param0 文章名称、文章别名
+ * @returns Promise对象
+ */
+export const addArtCateAPI = ({ cate_name, cate_alias }) => {
+  return request({
+    url: '/my/cate/add',
+    method: 'POST',
+    data: {
+      cate_name,
+      cate_alias
+    }
+  })
+}
+
+/**
+ * 更新文章分类
+ * @param {*} param0 文章id、文章名称、文章别名
+ * @returns Promise对象
+ */
+export const updateArtCateAPI = ({ id, cate_name, cate_alias }) => {
+  return request({
+    url: '/my/cate/info',
+    method: 'PUT',
+    data: {
+      id,
+      cate_name,
+      cate_alias
+    }
+  })
+}
+
+/**
+ * 删除文章分类
+ * @param {*} id 文章id
+ * @returns Promise对象
+ */
+export const deleteArtCateAPI = (id) => {
+  return request({
+    url: '/my/cate/del',
+    method: 'DELETE',
+    params: {
+      id
+    }
+  })
+}
