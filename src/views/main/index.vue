@@ -161,6 +161,9 @@ export default {
 .el-submenu, .el-menu-item {
   width: 200px;
 }
+.el-main{
+  overflow-y: scroll;
+}
 
 body > .el-container {
   margin-bottom: 40px;

@@ -2,7 +2,7 @@
   <div class="list_container">
     <el-card class="box-card">
       <div slot="header" class="header_box">
-        <span>基本资料</span>
+        <span>文章列表</span>
       </div>
     </el-card>
   </div>

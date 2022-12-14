@@ -105,3 +105,13 @@ export const updateUserAvatarAPI = (avatar) => {
     }
   })
 }
+
+/**
+ * 获取文章分类
+ * @returns Promise对象
+ */
+export const getArtCateAPI = () => {
+  return request({
+    url: '/my/cate/list'
+  })
+}
