@@ -78,7 +78,7 @@
 </template>
 
 <script>
-import { getArtCateAPI, getArtListAPI, pubArtAPI } from '@/api'
+import { getArtCateAPI, getArtListAPI, pubArtAPI, deleteArtAPI } from '@/api'
 import img from '@/assets/images/cover.jpg'
 export default {
   name: 'art-list',
@@ -243,7 +243,27 @@ export default {
       this.$router.push('art-list/art-detail/' + artId)
     },
     // 删除文章
-    deleteArt () {}
+    async deleteArt (row) {
+      this.$confirm('是否确认删除该文章？', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(async () => {
+        const { data: res } = await deleteArtAPI(row.id)
+        if (res.code !== 0) return this.$message.error(res.message)
+        this.$message.success(res.message)
+        // Bug: 最后一页只剩下一条数据，删除该数据后，页码没有改变重新发起请求，导致表格数据为空
+        // 解决：判断当前列表数据是否为空，为空就让pagenum--
+        // 虽然调用删除，但是请求接口后后台删除了，前端数据还在，还没有重新刷新页面
+        if (this.artList.length === 1) {
+          if (this.artListForm.pagenum > 1) {
+            this.artListForm.pagenum--
+          }
+        }
+        this.getArtList()
+      }).catch(() => {
+      })
+    }
   },
   created () {
     this.getArtCate()
