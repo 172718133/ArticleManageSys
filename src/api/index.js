@@ -163,3 +163,45 @@ export const deleteArtCateAPI = (id) => {
     }
   })
 }
+
+/**
+ * 获取文章列表
+ * @param {*} param0 页码、条数、分类id、状态
+ * @returns Promise对象
+ */
+export const getArtListAPI = ({ pagenum, pagesize, cate_id, state }) => {
+  return request({
+    url: '/my/article/list',
+    params: {
+      pagenum,
+      pagesize,
+      cate_id,
+      state
+    }
+  })
+}
+
+/**
+ * 发表文章
+ * @param {*} param0 文章标题、分类id、内容、封面、状态
+ * @returns Promise对象
+ */
+export const pubArtAPI = (formdate) => {
+  return request({
+    url: '/my/article/add',
+    method: 'POST',
+    data: formdate
+  })
+}
+
+/**
+ * 获取文章详情
+ * @param {*} id 文章id
+ * @returns Promise对象
+ */
+export const getArtDetailAPI = (id) => {
+  return request({
+    url: '/my/article/info',
+    params: { id }
+  })
+}

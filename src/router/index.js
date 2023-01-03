@@ -33,6 +33,11 @@ const routes = [
       {
         path: 'user-pwd',
         component: () => import('@/views/user/userRepwd.vue')
+      },
+      {
+        path: 'art-list/art-detail/:artId',
+        component: () => import('@/views/article/artDetail.vue'),
+        props: true
       }
     ]
   },
