@@ -63,11 +63,18 @@ export default {
     }
   },
   methods: {
-    async confirm () {
-      const { data: res } = await updateUserPwdAPI(this.PWDForm)
-      if (res.code !== 0) return this.$message.error(res.message)
-      this.$refs.PWDform.resetFields()
-      this.$message.success(res.message)
+    // 确认修改按钮点击事件
+    confirm () {
+      this.$refs.PWDform.validate(async valid => {
+        if (valid) {
+          const { data: res } = await updateUserPwdAPI(this.PWDForm)
+          if (res.code !== 0) return this.$message.error(res.message)
+          this.$refs.PWDform.resetFields()
+          this.$message.success(res.message)
+        } else {
+          return false
+        }
+      })
     },
     reset () {
       this.$refs.PWDform.resetFields()

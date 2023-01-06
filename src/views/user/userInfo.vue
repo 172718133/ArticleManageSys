@@ -47,14 +47,22 @@ export default {
     }
   },
   methods: {
-    async confirm () {
-      this.infoFrom.id = this.$store.state.userInfo.id
-      const { data: res } = await updateUserInfoAPI(this.infoFrom)
-      if (res.code !== 0) return this.$message.error(res.message)
-      this.$refs.infoform.resetFields()
-      this.$message.success(res.message)
-      this.$store.dispatch('getUserInfoAction')
+    // 确认修改按钮点击事件
+    confirm () {
+      this.$refs.infoform.validate(async valid => {
+        if (valid) {
+          this.infoFrom.id = this.$store.state.userInfo.id
+          const { data: res } = await updateUserInfoAPI(this.infoFrom)
+          if (res.code !== 0) return this.$message.error(res.message)
+          this.$refs.infoform.resetFields()
+          this.$message.success(res.message)
+          this.$store.dispatch('getUserInfoAction')
+        } else {
+          return false
+        }
+      })
     },
+    // 重置按钮点击事件
     reset () {
       this.$refs.infoform.resetFields()
     }
