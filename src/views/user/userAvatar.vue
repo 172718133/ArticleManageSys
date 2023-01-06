@@ -64,6 +64,7 @@ export default {
     },
     // 上传按钮点击事件
     async submitUpload () {
+      if (!this.avatar) return this.$message.error('请先选择头像再上传')
       const { data: res } = await updateUserAvatarAPI(this.avatar)
       if (res.code !== 0) return this.$message.error(res.message)
       this.$message.success(res.message)
