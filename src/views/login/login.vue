@@ -46,12 +46,16 @@ export default {
     }
   },
   methods: {
-    async login () {
-      const { data: res } = await login(this.loginFrom)
-      if (res.code !== 0) return this.$message.error(res.message)
-      this.$store.commit('updateToken', res.token)
-      this.$message.success(res.message)
-      this.$router.push('/')
+    login () {
+      this.$refs.loginfrom.validate(async (valid) => {
+        if (valid) {
+          const { data: res } = await login(this.loginFrom)
+          if (res.code !== 0) return this.$message.error(res.message)
+          this.$store.commit('updateToken', res.token)
+          this.$message.success(res.message)
+          this.$router.push('/')
+        }
+      })
     }
   }
 }

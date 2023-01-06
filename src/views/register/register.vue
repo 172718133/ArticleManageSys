@@ -62,11 +62,15 @@ export default {
     }
   },
   methods: {
-    async reg () {
-      const { data: res } = await register(this.regFrom)
-      if (res.code !== 0) return this.$message.error(res.message)
-      this.$message.success(res.message)
-      this.$router.push('/login')
+    reg () {
+      this.$refs.regfrom.validate(async (valid) => {
+        if (valid) {
+          const { data: res } = await register(this.regFrom)
+          if (res.code !== 0) return this.$message.error(res.message)
+          this.$message.success(res.message)
+          this.$router.push('/login')
+        }
+      })
     }
   }
 }
