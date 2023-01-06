@@ -169,6 +169,8 @@ export default {
         // if (this.pubArtForm.cover_img === '') {
         //   this.pubArtForm.cover_img = ''
         // }
+      } if (e.target.files[0].size > 1000000) {
+        this.$message.error('图片大小不能超过1M！')
       } else {
         this.pubArtForm.cover_img = e.target.files[0]
         // 将文件名使用空格分开，存储为数组
