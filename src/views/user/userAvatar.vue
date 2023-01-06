@@ -29,11 +29,15 @@ export default {
   methods: {
     // 选择图片后的回调
     iptChange (e) {
+      console.log(e)
       const file = e.target.files
+      console.log(file[0].size)
       const fileName = file[0].name.split('')
       const str = ['/', '@', '$', '%', '&', '#']
       if (file.length === 0) {
         this.avatar = ''
+      } if (file[0].size > 1000000) {
+        this.$message.error('图片大小不能超过1M！')
       } else {
         fileName.some((item, index) => {
           if (str.indexOf(item) !== -1) {
