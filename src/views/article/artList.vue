@@ -172,6 +172,7 @@ export default {
       } if (e.target.files[0].size > 1000000) {
         this.$message.error('图片大小不能超过1M！')
       } else {
+        // 接口要求上传整个图片文件
         this.pubArtForm.cover_img = e.target.files[0]
         // 将文件名使用空格分开，存储为数组
         const imgName = e.target.files[0].name.split('')
@@ -221,6 +222,11 @@ export default {
       this.pubArtForm.state = state
       this.$refs.pubArtform.validate(async valid => {
         if (valid) {
+          // console.log(this.pubArtForm.title)
+          // console.log(this.pubArtForm.cate_id)
+          // console.log(this.pubArtForm.content)
+          // console.log(this.pubArtForm.state)
+          // console.log(this.pubArtForm.cover_img)
           if (!this.pubArtForm.cover_img) return this.$message.error('请选择文章封面！')
           const fd = new FormData()
           fd.append('title', this.pubArtForm.title)
