@@ -35,7 +35,7 @@
       </el-form>
       <span slot="footer" class="dialog-footer">
         <el-button size="small" @click="cancel">取 消</el-button>
-        <el-button type="primary" size="small" @click="addCate">添 加</el-button>
+        <el-button type="primary" ref="sumbit" size="small" @click="addCate">{{btn}}</el-button>
       </span>
     </el-dialog>
   </div>
@@ -48,6 +48,7 @@ export default {
   data () {
     return {
       title: '',
+      btn: '',
       artCateList: [],
       dialogVisible: false,
       artCateForm: {
@@ -84,6 +85,7 @@ export default {
       this.isEdit = false
       this.editId = ''
       this.title = '添加文章分类'
+      this.btn = '添 加'
       this.dialogVisible = true
     },
     // 添加分类对话框关闭的回调
@@ -117,6 +119,7 @@ export default {
       this.editId = row.id
       this.dialogVisible = true
       this.title = '修改文章分类'
+      this.btn = '修 改'
       this.$nextTick(() => {
         this.artCateForm.cate_name = row.cate_name
         this.artCateForm.cate_alias = row.cate_alias
