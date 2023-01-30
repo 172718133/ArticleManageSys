@@ -4,7 +4,7 @@
       <div slot="header" class="header_box">
         <span>重置密码</span>
       </div>
-      <el-form :model="PWDForm" :rules="PWDrulesForm" ref="PWDform" label-width="100px" class="demo-ruleForm">
+      <el-form ref="pwdform" :model="PWDForm" :rules="PWDrulesForm" label-width="100px" class="demo-ruleForm">
         <el-form-item label="旧密码" prop="old_pwd">
           <el-input v-model="PWDForm.old_pwd" type="password" placeholder="请输入旧密码"></el-input>
         </el-form-item>
@@ -64,20 +64,20 @@ export default {
   },
   methods: {
     // 确认修改按钮点击事件
-    confirm () {
-      this.$refs.PWDform.validate(async valid => {
-        if (valid) {
-          const { data: res } = await updateUserPwdAPI(this.PWDForm)
-          if (res.code !== 0) return this.$message.error(res.message)
-          this.$refs.PWDform.resetFields()
-          this.$message.success(res.message)
-        } else {
-          return false
-        }
-      })
+    async confirm () {
+      if (this.PWDForm.old_pwd === '') return this.$message.error('请输入旧密码')
+      if (this.PWDForm.new_pwd === '') return this.$message.error('请输入新密码')
+      if (this.PWDForm.re_pwd === '') return this.$message.error('请输入确认密码')
+      const { data: res } = await updateUserPwdAPI(this.PWDForm)
+      if (res.code !== 0) return this.$message.error(res.message)
+      this.$refs.pwdform.resetFields()
+      this.$message.warning('密码已修改，请重新登录！')
+      this.$router.push('/login')
+      this.$store.commit('updateToken', '')
+      this.$store.commit('updateUserinfo', '')
     },
     reset () {
-      this.$refs.PWDform.resetFields()
+      this.$refs.pwdform.resetFields()
     }
   }
 }
