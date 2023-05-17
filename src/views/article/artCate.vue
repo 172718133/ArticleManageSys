@@ -5,7 +5,7 @@
       <!-- 头部 -->
       <div slot="header" class="header_box">
         <span>文章分类</span>
-        <el-button type="primary" size="small" @click="showAddDialog">添加分类</el-button>
+        <el-button id="add_cate" type="primary" size="small" @click="showAddDialog">添加分类</el-button>
       </div>
       <!-- 文章分类表格 -->
       <el-table :data="artCateList" style="width: 100%" border stripe align="center">
@@ -27,15 +27,15 @@
     <el-dialog :title="title" :visible.sync="dialogVisible" width="35%" @close="dialogClose" ref="artCateTitle">
       <el-form :model="artCateForm" :rules="artCateFormRules" ref="artCateform">
         <el-form-item label="分类名称" label-width="80px" prop="cate_name">
-          <el-input v-model="artCateForm.cate_name"></el-input>
+          <el-input id="cate_name" v-model="artCateForm.cate_name"></el-input>
         </el-form-item>
         <el-form-item label="分类别名" label-width="80px" prop="cate_alias">
-          <el-input v-model="artCateForm.cate_alias"></el-input>
+          <el-input id="cate_alias" v-model="artCateForm.cate_alias"></el-input>
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
-        <el-button size="small" @click="cancel">取 消</el-button>
-        <el-button type="primary" ref="sumbit" size="small" @click="addCate">{{btn}}</el-button>
+        <el-button id="add_cate_cancel" size="small" @click="cancel">取 消</el-button>
+        <el-button id="add_cate_confirm" type="primary" ref="sumbit" size="small" @click="addCate">{{btn}}</el-button>
       </span>
     </el-dialog>
   </div>

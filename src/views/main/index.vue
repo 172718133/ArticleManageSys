@@ -36,7 +36,7 @@
                 <!-- 使用template标签进行循环，只占位实际不进行渲染 -->
                 <template v-for="item in asideList">
                   <!-- 没有子选项的菜单项 -->
-                  <el-menu-item :index="item.indexPath" :key="item.indexPath" v-if="!item.children">
+                  <el-menu-item :id="item.indexPath.split('/')" :index="item.indexPath" :key="item.indexPath" v-if="!item.children">
                     <i :class="item.icon"></i>
                     <span slot="title">{{item.title}}</span>
                   </el-menu-item>
@@ -44,9 +44,9 @@
                   <el-submenu :index="item.indexPath" :key="item.indexPath" v-else>
                     <template slot="title">
                       <i :class="item.icon"></i>
-                      <span>{{item.title}}</span>
+                      <span :id="item.icon">{{item.title}}</span>
                     </template>
-                    <el-menu-item :index="subItem.indexPath" v-for="subItem in item.children" :key="subItem.indexPath">
+                    <el-menu-item :id="subItem.indexPath.split('/')" :index="subItem.indexPath" v-for="subItem in item.children" :key="subItem.indexPath">
                       <i :class="subItem.icon"></i>
                       <span>{{subItem.title}}</span>
                     </el-menu-item>

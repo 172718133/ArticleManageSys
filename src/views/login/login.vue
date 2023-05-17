@@ -6,13 +6,13 @@
       <div class="login_form">
         <el-form ref="loginfrom" :model="loginFrom" :rules="loginFromRules">
           <el-form-item prop="username">
-            <el-input v-model.trim="loginFrom.username" prefix-icon="el-icon-user" placeholder="请输入用户名"></el-input>
+            <el-input id="username" v-model.trim="loginFrom.username" prefix-icon="el-icon-user" placeholder="请输入用户名"></el-input>
           </el-form-item>
           <el-form-item prop="password">
-            <el-input v-model.trim="loginFrom.password" prefix-icon="el-icon-lock" type="password" placeholder="请输入密码"></el-input>
+            <el-input id="pwd" v-model.trim="loginFrom.password" prefix-icon="el-icon-lock" type="password" placeholder="请输入密码"></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" style="width: 100%" @click="login">登录</el-button>
+            <el-button id="login_btn" type="primary" style="width: 100%" @click="login">登录</el-button>
           </el-form-item>
         </el-form>
       </div>
